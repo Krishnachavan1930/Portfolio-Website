@@ -1,7 +1,7 @@
 import React, { useState, useEffect, Suspense } from "react";
 import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
 import NetworkBackground from "./NetworkBackground";
-import Photograph from "../assets/Photograph.jpg"; // Import the image
+import Photograph from "../assets/Photograph.jpg";
 
 const HeroSection = () => {
   const [text, setText] = useState("");
@@ -19,16 +19,25 @@ const HeroSection = () => {
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-white">
-      {/* Network Background */}
       <Suspense fallback={<div className="absolute inset-0 bg-gray-100" />}>
         <NetworkBackground />
       </Suspense>
 
-      {/* Content */}
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl w-full space-y-8 flex flex-col md:flex-row items-center justify-between">
-          {/* Left side - Animated Text */}
-          <div className="md:w-1/2 space-y-6 text-center md:text-left">
+          {/* Profile Picture */}
+          <div className="w-full md:w-1/2 md:order-2 mb-8 md:mb-0 flex justify-center md:justify-end">
+            <div className="w-full h-[490px] sm:h-[400px] md:h-[500px] lg:h-[550px] max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[450px] relative overflow-hidden rounded-lg shadow-xl bg-gradient-to-tr from-blue-200 via-white to-blue-50">
+              <img
+                src={Photograph}
+                alt="Krishna Chavan"
+                className="absolute inset-0 w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-500"
+              />
+            </div>
+          </div>
+
+          {/* Animated Text */}
+          <div className="w-full md:w-1/2 md:order-1 space-y-6 text-center md:text-left">
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800">
               Hi, I'm <span className="text-blue-600">Krishna Chavan</span>
             </h1>
@@ -61,17 +70,6 @@ const HeroSection = () => {
               </a>
             </div>
           </div>
-
-          {/* Right side - Profile Picture */}
-          <div className="md:w-1/2 mt-8 md:mt-0 flex justify-center md:justify-end">
-            <div className="w-96 h-[350px] sm:w-96 sm:h-[550px] md:w-128 md:h-[550px] lg:w-144 lg:h-[500px] relative overflow-hidden rounded-lg shadow-xl bg-gradient-to-tr from-blue-200 via-white to-blue-50">
-              <img
-                src={Photograph}
-                alt="Krishna Chavan"
-                className="relative w-full h-full object-cover transform hover:scale-105 transition-transform duration-500 rounded-lg"
-              />
-            </div>
-          </div>
         </div>
       </div>
     </div>
@@ -79,3 +77,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+

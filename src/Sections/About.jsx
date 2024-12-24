@@ -3,7 +3,7 @@ import { FaCode, FaServer, FaMobileAlt } from "react-icons/fa";
 
 const AboutMeSection = () => {
   return (
-    <section className="min-h-screen bg-gradient-to-b from-gray-100 to-gray-200 py-20 px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen bg-white py-20 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <h2 className="text-5xl font-bold text-center mb-16">
           About <span className="text-blue-600">Me</span>
