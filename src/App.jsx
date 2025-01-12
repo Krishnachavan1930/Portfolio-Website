@@ -1,28 +1,55 @@
-import { useState } from 'react'
-import { BrowserRouter as Router } from 'react-router-dom'
-import './App.css'
-import Navbar from './Components/Navbar'
-import HeroSection from './Sections/Hero'
-import About from './Sections/About'
-import Projects from './Sections/Projects'
+import { useState, useRef } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import "./App.css";
+import Navbar from "./Components/Navbar";
+import HeroSection from "./Sections/Hero";
+import About from "./Sections/About";
+import Projects from "./Sections/Projects";
 import Certificate from "./Sections/Certificate";
-
-import ContactPage from './Sections/Contact'
-
+import ContactPage from "./Sections/Contact";
 
 function App() {
-  const [count, setCount] = useState(0)
+  const heroRef = useRef(null);
+  const aboutRef = useRef(null);
+  const projectsRef = useRef(null);
+  const certiRef = useRef(null);
+  const contactRef = useRef(null);
 
   return (
     <Router>
-      <Navbar />
-      <HeroSection />
-      <About />
-      <Projects />
-   <Certificate></Certificate>
-      <ContactPage></ContactPage>
+      <Navbar
+        heroRef={heroRef}
+        aboutRef={aboutRef}
+        projectsRef={projectsRef}
+        certiRef={certiRef}
+        contactRef={contactRef}
+      />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <div ref={heroRef} id="home">
+                <HeroSection />
+              </div>
+              <div ref={aboutRef} id="about">
+                <About />
+              </div>
+              <div ref={projectsRef} id="projects">
+                <Projects />
+              </div>
+              <div ref={certiRef} id="certificates">
+                <Certificate />
+              </div>
+              <div ref={contactRef} id="contact">
+                <ContactPage />
+              </div>
+            </>
+          }
+        />
+      </Routes>
     </Router>
-  )
+  );
 }
 
-export default App
+export default App;

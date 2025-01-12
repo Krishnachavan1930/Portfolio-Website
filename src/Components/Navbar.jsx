@@ -1,32 +1,41 @@
 import React, { useState } from "react";
 import { Menu, X, User, Code, Award, Mail, Linkedin, Home } from "lucide-react";
 
-const Navbar = () => {
+const Navbar = ({ heroRef, aboutRef, projectsRef, certiRef, contactRef }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", icon: Home, link: "#home" },
-    { name: "About", icon: User, link: "#about" },
-    { name: "Projects", icon: Code, link: "#projects" },
-    { name: "Certificates", icon: Award, link: "#certificates" },
-    { name: "Contact", icon: Mail, link: "#contact" },
+    { name: "Home", icon: Home, ref: heroRef },
+    { name: "About", icon: User, ref: aboutRef },
+    { name: "Projects", icon: Code, ref: projectsRef },
+    { name: "Certificates", icon: Award, ref: certiRef },
+    { name: "Contact", icon: Mail, ref: contactRef },
   ];
+
+  const scrollToSection = (ref) => {
+    ref.current.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+    setIsMenuOpen(false); // Close the menu on click in mobile view
+  };
 
   return (
     <div className="w-full font-sans">
-  {/* Promotional Banner */}
-<div className="w-full bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white py-3 px-6">
-  <div className="max-w-6xl mx-auto flex items-center justify-center text-center text-sm sm:text-base">
-    <p className="text-center">
-      Welcome! I specialize in crafting innovative websites and apps that bring your ideas to life.{" "}
-      <a href="#contact" className="text-yellow-300 hover:text-white hover:underline transition-all duration-300">
-        Get Started Today &gt;
-      </a>
-    </p>
-  </div>
-</div>
-
-
+      {/* Promotional Banner */}
+      <div className="w-full bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white py-3 px-6">
+        <div className="max-w-6xl mx-auto flex items-center justify-center text-center text-sm sm:text-base">
+          <p className="text-center">
+            Welcome! I specialize in crafting innovative websites and apps that bring your ideas to life.{" "}
+            <a
+              href="#contact"
+              className="text-yellow-300 hover:text-white hover:underline transition-all duration-300"
+            >
+              Get Started Today &gt;
+            </a>
+          </p>
+        </div>
+      </div>
 
       {/* Main Navigation */}
       <nav className="bg-gradient-to-b from-blue-200 to-white shadow-md sticky top-0 z-10">
@@ -40,14 +49,14 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item, index) => (
-                <a
+                <button
                   key={index}
-                  href={item.link}
+                  onClick={() => scrollToSection(item.ref)}
                   className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors duration-300 transform hover:scale-105"
                 >
                   <item.icon size={18} />
                   <span className="text-lg">{item.name}</span>
-                </a>
+                </button>
               ))}
             </div>
 
@@ -81,15 +90,14 @@ const Navbar = () => {
           <div className="md:hidden bg-gray-50 border-t border-gray-200">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item, index) => (
-                <a
+                <button
                   key={index}
-                  href={item.link}
+                  onClick={() => scrollToSection(item.ref)}
                   className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
-                  onClick={() => setIsMenuOpen(false)}
                 >
                   <item.icon size={18} />
                   <span>{item.name}</span>
-                </a>
+                </button>
               ))}
               <a
                 href="https://www.linkedin.com/in/krishna-chavan-882516249/"
