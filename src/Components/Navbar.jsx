@@ -5,7 +5,7 @@ const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const navItems = [
-    { name: "Home", icon: Home, link: "#home" }, // Added Home link
+    { name: "Home", icon: Home, link: "#home" },
     { name: "About", icon: User, link: "#about" },
     { name: "Projects", icon: Code, link: "#projects" },
     { name: "Certificates", icon: Award, link: "#certificates" },
@@ -14,24 +14,26 @@ const Navbar = () => {
 
   return (
     <div className="w-full font-sans">
-      {/* Promotional Banner */}
-      <div className="w-full bg-gray-900 text-white py-2 px-4">
-        <div className="max-w-6xl mx-auto flex items-center justify-center text-sm">
-          <p className="text-center">
-            Welcome to my portfolio! Explore my projects and achievements.{" "}
-            <a href="#contact" className="text-blue-400 hover:underline">
-              Contact Me &gt;
-            </a>
-          </p>
-        </div>
-      </div>
+  {/* Promotional Banner */}
+<div className="w-full bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white py-3 px-6">
+  <div className="max-w-6xl mx-auto flex items-center justify-center text-center text-sm sm:text-base">
+    <p className="text-center">
+      Welcome! I specialize in crafting innovative websites and apps that bring your ideas to life.{" "}
+      <a href="#contact" className="text-yellow-300 hover:text-white hover:underline transition-all duration-300">
+        Get Started Today &gt;
+      </a>
+    </p>
+  </div>
+</div>
+
+
 
       {/* Main Navigation */}
-      <nav className="bg-white shadow-md">
+      <nav className="bg-gradient-to-b from-blue-200 to-white shadow-md sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4">
           <div className="flex items-center justify-between h-16">
             {/* Logo */}
-            <div className="flex-shrink-0 font-bold text-xl text-gray-800">
+            <div className="flex-shrink-0 font-bold text-2xl text-gray-800 hover:text-blue-600 transition duration-300">
               Krishna
             </div>
 
@@ -41,10 +43,10 @@ const Navbar = () => {
                 <a
                   key={index}
                   href={item.link}
-                  className="flex items-center space-x-1 text-gray-600 hover:text-blue-500 transition-colors duration-300"
+                  className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors duration-300 transform hover:scale-105"
                 >
                   <item.icon size={18} />
-                  <span>{item.name}</span>
+                  <span className="text-lg">{item.name}</span>
                 </a>
               ))}
             </div>
@@ -55,7 +57,7 @@ const Navbar = () => {
                 href="https://www.linkedin.com/in/krishna-chavan-882516249/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition-colors duration-300"
+                className="flex items-center space-x-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition-all duration-300 transform hover:scale-105"
               >
                 <Linkedin size={18} />
                 <span>Connect</span>
@@ -66,7 +68,7 @@ const Navbar = () => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-600 hover:text-blue-500 focus:outline-none focus:text-blue-500"
+                className="text-gray-600 hover:text-blue-600 focus:outline-none focus:text-blue-600 transition duration-300"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -82,7 +84,7 @@ const Navbar = () => {
                 <a
                   key={index}
                   href={item.link}
-                  className="flex items-center space-x-2 text-gray-600 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium"
+                  className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
                   <item.icon size={18} />
@@ -93,7 +95,7 @@ const Navbar = () => {
                 href="https://www.linkedin.com/in/krishna-chavan-882516249/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 text-gray-600 hover:text-blue-500 block px-3 py-2 rounded-md text-base font-medium"
+                className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
                 <Linkedin size={18} />

@@ -30,6 +30,7 @@ export default function ContactPage() {
           (result) => {
             console.log(result.text);
             alert("Message Sent!");
+            form.current.reset(); // Reset the form fields
           },
           (error) => {
             console.log(error.text);
@@ -124,8 +125,10 @@ export default function ContactPage() {
             </h2>
             <div className="space-y-6">
               <div className="flex items-center">
-              <MdAttachEmail className="text-blue-600 mr-4" size={28} />
-              <span className="text-black text-lg">krishnachavan459@gmail.com</span>
+                <MdAttachEmail className="text-blue-600 mr-4" size={28} />
+                <span className="text-black text-lg">
+                  krishnachavan459@gmail.com
+                </span>
               </div>
               <div className="flex items-center">
                 <FaPhoneVolume className="text-blue-600 mr-4" size={28} />
@@ -148,7 +151,6 @@ export default function ContactPage() {
                 className="text-blue-600 hover:text-blue-800 transition duration-300"
               >
                 <FiGithub size={32} color="#181717" />
-
               </a>
               <a
                 href="https://www.linkedin.com/in/krishna-chavan-882516249/"
@@ -156,8 +158,7 @@ export default function ContactPage() {
                 rel="noopener noreferrer"
                 className="text-blue-600 hover:text-blue-800 transition duration-300"
               >
-               <FiLinkedin size={32} color="#0A66C2" />
-
+                <FiLinkedin size={32} color="#0A66C2" />
               </a>
               <a
                 href="https://wa.me/919284769125"
@@ -166,28 +167,26 @@ export default function ContactPage() {
                 className="text-blue-600 hover:text-blue-800 transition duration-300"
               >
                 <FaWhatsapp size={32} color="#25D366" />
-
               </a>
             </div>
           </div>
         </div>
 
-       
-<div className="mt-16 text-center">
-  <motion.p
-    className="text-gray-600 text-lg"
-    initial={{ opacity: 0, y: 20 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{
-      duration: 1,
-      ease: "easeInOut",
-      delay: 0.2,
-    }}
-  >
-    I'm always excited to work on new projects and collaborate with
-    fellow developers.
-  </motion.p>
-</div>
+        <div className="mt-16 text-center">
+          <motion.p
+            className="text-gray-600 text-lg"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: 1,
+              ease: "easeInOut",
+              delay: 0.2,
+            }}
+          >
+            I'm always excited to work on new projects and collaborate with
+            fellow developers.
+          </motion.p>
+        </div>
       </div>
 
       <div
@@ -207,7 +206,6 @@ export default function ContactPage() {
             className="text-blue-600 hover:text-blue-800 transition duration-300"
           >
             <FaInstagram size={28} color="#E1306C" />
-
           </a>
           <a
             href="https://facebook.com"
@@ -216,10 +214,11 @@ export default function ContactPage() {
             className="text-blue-600 hover:text-blue-800 transition duration-300"
           >
             <FaFacebook size={28} color="#1877F2" />
-
           </a>
         </div>
-        <p className="text-gray-600 text-lg">&copy; 2024 Krishna Chavan. All rights reserved.</p>
+        <p className="text-gray-600 text-lg">
+          &copy; 2024 Krishna Chavan. All rights reserved.
+        </p>
       </footer>
     </div>
   );

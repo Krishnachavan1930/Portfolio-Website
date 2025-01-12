@@ -96,7 +96,7 @@ const Projects = () => {
             {projects.map((project) => (
               <div 
                 key={project.id} 
-                className="flex-none w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300"
+                className="flex-none w-[350px] bg-white rounded-2xl shadow-lg overflow-hidden hover:scale-105 hover:shadow-2xl transform transition-all duration-300 ease-in-out"
               >
                 <div className="relative h-64">
                   <img 
@@ -161,4 +161,3 @@ const Projects = () => {
 };
 
 export default Projects;
-
