@@ -1,83 +1,136 @@
-import React, { useState, useEffect, Suspense } from "react";
-import { FaGithub, FaLinkedin, FaTwitter } from "react-icons/fa";
+import React, { useState, useEffect, useRef, Suspense } from "react";
+import { FileDown, Github, Linkedin, Mail, MessageSquare } from "lucide-react";
 import NetworkBackground from "./NetworkBackground";
-import Photograph from "../assets/Photograph.jpg";
-// import Photograph from "../assets/Photograph.jpg";
+import Photograph from "../assets/photograph.jpg";
 
 const HeroSection = () => {
   const [text, setText] = useState("");
-  const fullText = "Full Stack Developer";
-  const [index, setIndex] = useState(0);
+  const [isDeleting, setIsDeleting] = useState(false);
+  const [loopNum, setLoopNum] = useState(0);
+  const [typingSpeed, setTypingSpeed] = useState(150);
+  const roles = [
+    "Full Stack Developer",
+    "Frontend Developer",
+    "Backend Developer",
+    "Mobile App Developer",
+  ];
+
+  const typingRef = useRef(null);
 
   useEffect(() => {
-    if (index < fullText.length) {
-      setTimeout(() => {
-        setText(text + fullText[index]);
-        setIndex(index + 1);
-      }, 100);
-    }
-  }, [index, text]);
+    const handleTyping = () => {
+      const i = loopNum % roles.length;
+      const fullText = roles[i];
+
+      if (isDeleting) {
+        setText(fullText.substring(0, text.length - 1));
+      } else {
+        setText(fullText.substring(0, text.length + 1));
+      }
+
+      setTypingSpeed(isDeleting ? 30 : 150);
+
+      if (!isDeleting && text === fullText) {
+        setTimeout(() => setIsDeleting(true), 2000);
+      } else if (isDeleting && text === "") {
+        setIsDeleting(false);
+        setLoopNum(loopNum + 1);
+      }
+    };
+
+    typingRef.current = setTimeout(handleTyping, typingSpeed);
+
+    return () => clearTimeout(typingRef.current);
+  }, [text, isDeleting, loopNum, roles, typingSpeed]);
 
   return (
-    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white-200 to-white">
+    <div className="relative min-h-screen overflow-hidden bg-gradient-to-b from-white to-gray-100">
       <Suspense fallback={<div className="absolute inset-0 bg-gray-100" />}>
         <NetworkBackground />
       </Suspense>
 
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl w-full space-y-8 flex flex-col md:flex-row items-center justify-between">
-          {/* Profile Picture */}
-          <div className="w-full md:w-1/2 md:order-2 mb-8 md:mb-0 flex justify-center md:justify-end">
-            <div className="w-full h-[490px] sm:h-[400px] md:h-[500px] lg:h-[550px] max-w-[300px] sm:max-w-[350px] md:max-w-[400px] lg:max-w-[450px] relative overflow-hidden rounded-full shadow-lg border-4 border-white transform hover:scale-105 transition-all duration-500">
+        <div className="max-w-7xl w-full flex flex-col md:flex-row items-center justify-between">
+          {/* Profile Picture - Mobile First */}
+          <div className="w-full md:hidden mb-8 animate-fadeIn">
+            <div className="relative w-[250px] h-[250px] mx-auto rounded-full border-8 border-black overflow-hidden bg-[#FFE4E1] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
               <img
                 src={Photograph}
-                alt="Krishna Chavan"
-                className="absolute inset-0 w-full h-full object-cover object-center"
+                alt="Profile of Krishna Chavan"
+                className="w-full h-full object-cover transition-transform duration-300 transform hover:scale-110"
               />
             </div>
           </div>
 
-          {/* Animated Text */}
-          <div className="w-full md:w-1/2 md:order-1 space-y-6 text-center md:text-left">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold text-gray-800">
-              Hi, I'm <span className="text-blue-600">Krishna Chavan</span>
-            </h1>
-            <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold text-gray-700">
-              {text}
-              <span className="animate-blink text-blue-600">|</span>
-            </h2>
-            <p className="text-lg text-gray-600 max-w-md mx-auto md:mx-0">
-            Turning your ideas into powerful, beautiful, and responsive digital solutions.
-            </p>
-            <div className="flex justify-center md:justify-start space-x-6 mt-6">
+          {/* Text Content */}
+          <div className="w-full md:w-1/2 space-y-6 text-center md:text-left">
+            <div className="space-y-4">
+              <h2 className="text-[#B8860B] text-3xl md:text-4xl font-bold animate-fadeIn">
+                Hello!
+              </h2>
+              <div className="inline-block animate-slideIn">
+                <p className="bg-[#B8860B] text-white px-6 py-2 rounded-full text-lg md:text-xl">
+                  I'm Krishna Chavan
+                </p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold animate-fadeIn">
+                I'm a <span className="text-[#20B2AA]">{text}</span>
+                <span className="text-[#20B2AA] animate-blink">|</span>
+              </h1>
+              <p className="text-base md:text-lg text-gray-600 max-w-md mx-auto md:mx-0 animate-fadeIn px-4 md:px-0">
+                Expert in Frontend, Backend, and Mobile App Development.
+                Creating seamless user experiences and powerful backend systems.
+              </p>
+            </div>
+
+            {/* Call to Action Buttons */}
+            <div className="flex flex-wrap gap-4 justify-center md:justify-start animate-fadeIn px-4 md:px-0">
               <a
-                href="#"
-                className="text-gray-600 hover:text-blue-600 transition-colors duration-300 transform hover:scale-125"
+                href="#work"
+                className="px-6 md:px-8 py-2.5 md:py-3 bg-[#8A2BE2] hover:bg-[#7B1FA2] text-white rounded-lg transition-all duration-300 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#8A2BE2] text-sm md:text-base"
               >
-                <FaGithub className="w-8 h-8" />
+                My Work
               </a>
               <a
-                href="#"
-                className="text-gray-600 hover:text-blue-600 transition-colors duration-300 transform hover:scale-125"
+                href="/cv.pdf"
+                className="px-6 md:px-8 py-2.5 md:py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg transition-all duration-300 flex items-center gap-2 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 text-sm md:text-base"
               >
-                <FaLinkedin className="w-8 h-8" />
-              </a>
-              <a
-                href="#"
-                className="text-gray-600 hover:text-blue-600 transition-colors duration-300 transform hover:scale-125"
-              >
-                <FaTwitter className="w-8 h-8" />
+                Download CV
+                <FileDown className="w-4 h-4 md:w-5 md:h-5" />
               </a>
             </div>
 
-            {/* Call to Action Button */}
-            <div className="mt-8">
-              <a
-                href="#contact"
-                className="inline-block px-8 py-3 text-xl font-medium text-white bg-blue-600 hover:bg-blue-700 rounded-lg transition-colors duration-300"
-              >
-                Get in Touch
-              </a>
+            {/* Social Links */}
+            <div className="flex justify-center md:justify-start space-x-4 md:space-x-6 pt-6 animate-fadeIn px-4 md:px-0">
+              {[
+                { icon: Linkedin, href: "#linkedin" },
+                { icon: Github, href: "#github" },
+                { icon: MessageSquare, href: "#message" },
+                { icon: Mail, href: "#mail" },
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center rounded-full bg-white shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-110 hover:rotate-6 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#20B2AA]"
+                  aria-label={`Visit my ${social.icon.name} profile`}
+                >
+                  <social.icon className="w-5 h-5 md:w-6 md:h-6 text-gray-600" />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Profile Picture - Desktop Only */}
+          <div className="hidden md:flex w-1/2 justify-end animate-fadeIn">
+            <div className="relative w-[400px] h-[400px] rounded-full border-8 border-black overflow-hidden bg-[#FFE4E1] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
+              <img
+                src={Photograph}
+                alt="Profile of Krishna Chavan"
+                className="w-full h-full object-cover transition-transform duration-300 transform hover:scale-110"
+              />
             </div>
           </div>
         </div>

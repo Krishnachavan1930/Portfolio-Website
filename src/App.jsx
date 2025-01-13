@@ -7,6 +7,8 @@ import About from "./Sections/About";
 import Projects from "./Sections/Projects";
 import Certificate from "./Sections/Certificate";
 import ContactPage from "./Sections/Contact";
+import ExperiencePage from "./Sections/ExperiencePage"; // Add this import
+import Education from "./Sections/Education";
 
 function App() {
   const heroRef = useRef(null);
@@ -47,6 +49,8 @@ function App() {
             </>
           }
         />
+        <Route path="/experience" element={<ExperiencePage />} />
+        <Route path="/education" element={<Education />} />
       </Routes>
     </Router>
   );

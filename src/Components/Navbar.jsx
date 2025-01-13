@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Menu, X, User, Code, Award, Mail, Linkedin, Home } from "lucide-react";
+import { Menu, X, User, Code, Award, Mail, Linkedin, Home } from 'lucide-react';
 
 const Navbar = ({ heroRef, aboutRef, projectsRef, certiRef, contactRef }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -17,19 +17,19 @@ const Navbar = ({ heroRef, aboutRef, projectsRef, certiRef, contactRef }) => {
       behavior: "smooth",
       block: "start",
     });
-    setIsMenuOpen(false); // Close the menu on click in mobile view
+    setIsMenuOpen(false);
   };
 
   return (
     <div className="w-full font-sans">
       {/* Promotional Banner */}
-      <div className="w-full bg-gradient-to-r from-blue-600 via-blue-500 to-blue-400 text-white py-3 px-6">
+      <div className="w-full bg-gray-100 text-gray-800 py-2 px-6">
         <div className="max-w-6xl mx-auto flex items-center justify-center text-center text-sm sm:text-base">
           <p className="text-center">
             Welcome! I specialize in crafting innovative websites and apps that bring your ideas to life.{" "}
             <a
               href="#contact"
-              className="text-yellow-300 hover:text-white hover:underline transition-all duration-300"
+              className="text-blue-600 hover:text-blue-800 hover:underline transition-all duration-300"
             >
               Get Started Today &gt;
             </a>
@@ -38,11 +38,11 @@ const Navbar = ({ heroRef, aboutRef, projectsRef, certiRef, contactRef }) => {
       </div>
 
       {/* Main Navigation */}
-      <nav className="bg-gradient-to-b from-blue-200 to-white shadow-md sticky top-0 z-10">
+      <nav className="bg-white shadow-sm sticky top-0 z-10">
         <div className="max-w-6xl mx-auto px-4">
-          <div className="flex items-center justify-between h-16">
+          <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <div className="flex-shrink-0 font-bold text-2xl text-gray-800 hover:text-blue-600 transition duration-300">
+            <div className="flex-shrink-0 font-semibold text-2xl text-gray-900 hover:text-gray-700 transition duration-300">
               Krishna
             </div>
 
@@ -52,10 +52,10 @@ const Navbar = ({ heroRef, aboutRef, projectsRef, certiRef, contactRef }) => {
                 <button
                   key={index}
                   onClick={() => scrollToSection(item.ref)}
-                  className="flex items-center space-x-1 text-gray-600 hover:text-blue-600 transition-colors duration-300 transform hover:scale-105"
+                  className="flex items-center space-x-1 text-gray-700 hover:text-gray-900 transition-colors duration-300 transform hover:scale-105"
                 >
-                  <item.icon size={18} />
-                  <span className="text-lg">{item.name}</span>
+                  <item.icon size={18} className="text-gray-500" />
+                  <span className="text-sm font-medium">{item.name}</span>
                 </button>
               ))}
             </div>
@@ -66,9 +66,9 @@ const Navbar = ({ heroRef, aboutRef, projectsRef, certiRef, contactRef }) => {
                 href="https://www.linkedin.com/in/krishna-chavan-882516249/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-1 bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md transition-all duration-300 transform hover:scale-105"
+                className="flex items-center space-x-1 bg-blue-600 hover:bg-blue-700 text-white font-medium text-sm py-2 px-4 rounded-full transition-all duration-300 transform hover:scale-105"
               >
-                <Linkedin size={18} />
+                <Linkedin size={16} />
                 <span>Connect</span>
               </a>
             </div>
@@ -77,7 +77,7 @@ const Navbar = ({ heroRef, aboutRef, projectsRef, certiRef, contactRef }) => {
             <div className="md:hidden">
               <button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="text-gray-600 hover:text-blue-600 focus:outline-none focus:text-blue-600 transition duration-300"
+                className="text-gray-700 hover:text-gray-900 focus:outline-none focus:text-gray-900 transition duration-300"
               >
                 {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
               </button>
@@ -87,15 +87,15 @@ const Navbar = ({ heroRef, aboutRef, projectsRef, certiRef, contactRef }) => {
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden bg-gray-50 border-t border-gray-200">
+          <div className="md:hidden bg-white border-t border-gray-100">
             <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
               {navItems.map((item, index) => (
                 <button
                   key={index}
                   onClick={() => scrollToSection(item.ref)}
-                  className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                  className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium w-full text-left"
                 >
-                  <item.icon size={18} />
+                  <item.icon size={18} className="text-gray-500" />
                   <span>{item.name}</span>
                 </button>
               ))}
@@ -103,10 +103,10 @@ const Navbar = ({ heroRef, aboutRef, projectsRef, certiRef, contactRef }) => {
                 href="https://www.linkedin.com/in/krishna-chavan-882516249/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center space-x-2 text-gray-600 hover:text-blue-600 block px-3 py-2 rounded-md text-base font-medium"
+                className="flex items-center space-x-2 text-gray-700 hover:text-gray-900 block px-3 py-2 rounded-md text-base font-medium"
                 onClick={() => setIsMenuOpen(false)}
               >
-                <Linkedin size={18} />
+                <Linkedin size={18} className="text-gray-500" />
                 <span>Connect on LinkedIn</span>
               </a>
             </div>
@@ -118,3 +118,4 @@ const Navbar = ({ heroRef, aboutRef, projectsRef, certiRef, contactRef }) => {
 };
 
 export default Navbar;
+
