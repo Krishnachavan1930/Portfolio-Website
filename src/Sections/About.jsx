@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { FaCode, FaServer, FaLaptopCode } from "react-icons/fa"; // Imported icons
 import { BsFillPhoneFill } from "react-icons/bs"; // For mobile
 import { useNavigate } from "react-router-dom"; // React Router navigation
+import { FaGraduationCap, FaUserTie } from "react-icons/fa"; // For Experience and Education
 
 const AboutMeSection = () => {
   const navigate = useNavigate();
@@ -48,7 +49,7 @@ const AboutMeSection = () => {
           {/* Skills Section */}
           <div className="space-y-6">
             {/* Front-end Development Card */}
-            <div className="bg-gradient-to-r from-blue-400 to-blue-600 p-6 rounded-xl text-white shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 fade-in opacity-0 translate-x-8">
+            <div className="bg-gradient-to-r from-blue-400 to-blue-600 p-6 rounded-xl text-white shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 fade-in opacity-0 translate-x-8 sm:mx-4 md:mx-0 lg:mx-0">
               <div className="flex items-center mb-4">
                 <div className="mr-4">
                   <FaLaptopCode className="w-12 h-12 text-white" />
@@ -62,7 +63,7 @@ const AboutMeSection = () => {
             </div>
 
             {/* Back-end Development Card */}
-            <div className="bg-gradient-to-r from-purple-400 to-purple-600 p-6 rounded-xl text-white shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 fade-in opacity-0 translate-x-8">
+            <div className="bg-gradient-to-r from-purple-400 to-purple-600 p-6 rounded-xl text-white shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 fade-in opacity-0 translate-x-8 sm:mx-4 md:mx-0 lg:mx-0">
               <div className="flex items-center mb-4">
                 <div className="mr-4">
                   <FaServer className="w-12 h-12 text-white" />
@@ -76,7 +77,7 @@ const AboutMeSection = () => {
             </div>
 
             {/* Mobile Development Card */}
-            <div className="bg-gradient-to-r from-pink-400 to-pink-600 p-6 rounded-xl text-white shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 fade-in opacity-0 translate-x-8">
+            <div className="bg-gradient-to-r from-pink-400 to-pink-600 p-6 rounded-xl text-white shadow-lg hover:shadow-2xl transition duration-300 ease-in-out transform hover:-translate-y-2 fade-in opacity-0 translate-x-8 sm:mx-4 md:mx-0 lg:mx-0">
               <div className="flex items-center mb-4">
                 <div className="mr-4">
                   <BsFillPhoneFill className="w-12 h-12 text-white" />
@@ -96,26 +97,29 @@ const AboutMeSection = () => {
         <div className="mt-12 flex justify-center space-x-4 fade-in opacity-0 translate-y-8">
           <button
             onClick={() => navigate("/experience")}
-            className="bg-purple-600 text-white font-semibold py-3 px-8 rounded-full text-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
+            className="bg-purple-600 text-white font-semibold py-3 px-8 rounded-full text-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg flex items-center space-x-2"
           >
-            Experience
+            <FaUserTie className="w-6 h-6" />
+            <span>Experience</span>
           </button>
           <button
             onClick={() => navigate("/education")}
-            className="bg-green-600 text-white font-semibold py-3 px-8 rounded-full text-lg hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg"
+            className="bg-green-600 text-white font-semibold py-3 px-8 rounded-full text-lg hover:bg-green-700 transition duration-300 ease-in-out transform hover:scale-105 hover:shadow-lg flex items-center space-x-2"
           >
-            Education
+            <FaGraduationCap className="w-6 h-6" />
+            <span>Education</span>
           </button>
         </div>
 
-        {/* Call to Action Button */}
+        {/* Skills Button */}
         <div className="mt-16 text-center">
-          <a
-            href="#contact"
-            className="inline-block bg-blue-600 text-white font-semibold py-3 px-8 rounded-full text-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105"
+          <button
+            onClick={() => navigate("/skills")}
+            className="inline-flex bg-blue-600 text-white font-semibold py-3 px-8 rounded-full text-lg hover:bg-blue-700 transition duration-300 ease-in-out transform hover:scale-105 flex items-center justify-center space-x-2"
           >
-            Get in Touch
-          </a>
+            <FaCode className="w-6 h-6" />
+            <span>Skills</span>
+          </button>
         </div>
       </div>
     </section>

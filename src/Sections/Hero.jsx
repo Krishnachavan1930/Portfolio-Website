@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from "react";
 import { FileDown, Github, Linkedin, Mail, MessageSquare } from "lucide-react";
 import NetworkBackground from "./NetworkBackground";
-import Photograph from "../assets/photograph.jpg";
+import Photograph from "../assets/picture.jpg";
 
 const HeroSection = () => {
   const [text, setText] = useState("");
@@ -95,7 +95,7 @@ const HeroSection = () => {
                 My Work
               </a>
               <a
-                href="/cv.pdf"
+                href="https://drive.google.com/file/d/1oHht65gJwgqksRRCo3YOgawCcHp801ot/view?usp=sharing"
                 className="px-6 md:px-8 py-2.5 md:py-3 bg-gray-100 hover:bg-gray-200 text-gray-800 rounded-lg transition-all duration-300 flex items-center gap-2 transform hover:scale-105 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-400 text-sm md:text-base"
               >
                 Download CV
@@ -106,10 +106,13 @@ const HeroSection = () => {
             {/* Social Links */}
             <div className="flex justify-center md:justify-start space-x-4 md:space-x-6 pt-6 animate-fadeIn px-4 md:px-0">
               {[
-                { icon: Linkedin, href: "#linkedin" },
-                { icon: Github, href: "#github" },
-                { icon: MessageSquare, href: "#message" },
-                { icon: Mail, href: "#mail" },
+                {
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/krishna-chavan-882516249/",
+                },
+                { icon: Github, href: "https://github.com/Krishnachavan1930" },
+                { icon: MessageSquare, href: "https://wa.me/919284769125" },
+                { icon: Mail, href: "mailto:krishnachavan.tech@gmail.com" },
               ].map((social, index) => (
                 <a
                   key={index}
