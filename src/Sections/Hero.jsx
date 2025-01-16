@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef, Suspense } from "react";
 import { FileDown, Github, Linkedin, Mail, MessageSquare } from "lucide-react";
 import NetworkBackground from "./NetworkBackground";
-import Photograph from "../assets/picture.jpg";
+import Photograph from "/Picture.jpg";
 
 const HeroSection = () => {
   const [text, setText] = useState("");
