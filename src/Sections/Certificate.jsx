@@ -1,149 +1,129 @@
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { FaReact, FaNodeJs, FaCode, FaArrowRight } from "react-icons/fa"; // Added FaArrowRight for "Click Me" icon
+import { Award, ChevronDown, ChevronUp, ExternalLink } from "lucide-react";
 
-const certificates = [
-  {
-    id: 1,
-    title: "Advanced React Development",
-    issuer: "React Academy",
-    date: "June 15, 2023",
-    recipient: "John Doe",
-    instructor: "Dr. Jane Smith",
-    description:
-      "This course provided in-depth knowledge of advanced React features such as hooks, context API, and state management.",
-    icon: <FaReact className="text-6xl text-blue-500" />, // Increased icon size to 6xl
-  },
-  {
-    id: 2,
-    title: "Node.js Mastery",
-    issuer: "Node Institute",
-    date: "August 22, 2023",
-    recipient: "John Doe",
-    instructor: "Prof. Alan Turing",
-    description:
-      "Focused on backend development using Node.js, including building RESTful APIs and working with databases.",
-    icon: <FaNodeJs className="text-6xl text-green-500" />, // Increased icon size to 6xl
-  },
-  {
-    id: 3,
-    title: "Data Structures and Algorithms",
-    issuer: "CS School",
-    date: "October 5, 2023",
-    recipient: "John Doe",
-    instructor: "Sarah Johnson",
-    description:
-      "Covers essential data structures and algorithms used in problem-solving and optimizing code performance.",
-    icon: <FaCode className="text-6xl text-purple-500" />, // Increased icon size to 6xl
-  },
-];
+function App() {
+  const [showMore, setShowMore] = useState(false);
 
-const CertificateCard = ({ certificate, onClick }) => (
-  <motion.div
-    className="bg-white p-6 rounded-lg shadow-lg hover:shadow-xl cursor-pointer relative overflow-hidden group h-[380px]"
-    onClick={onClick}
-    whileHover={{ scale: 1.05 }}
-    transition={{ type: "spring", stiffness: 400, damping: 10 }}
-  >
-    <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></div>
-    <div className="flex items-center justify-center mb-4">
-      {" "}
-      {/* Changed to center the icon */}
-      {certificate.icon}
-    </div>
-    <h3 className="text-xl font-semibold text-blue-600 text-center">
-      {certificate.title} {/* Centered the title */}
-    </h3>
-    <p className="mt-2 text-gray-600 text-center">
-      Issuer: {certificate.issuer}
-    </p>{" "}
-    {/* Centered the text */}
-    <p className="text-gray-600 text-center">Date: {certificate.date}</p>{" "}
-    {/* Centered the text */}
-    <p className="mt-2 text-gray-500 text-sm text-center">
-      {certificate.description}
-    </p>{" "}
-    {/* Centered the text */}
-    <motion.div
-      className="absolute bottom-0 left-0 w-full h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500"
-      initial={{ scaleX: 0 }}
-      animate={{ scaleX: 1 }}
-      transition={{ duration: 0.5, delay: 0.2 }}
-    ></motion.div>
-    {/* Click Me Icon */}
-    <div className="absolute bottom-4 right-4 text-2xl text-gray-500 opacity-80 group-hover:opacity-100 transition-opacity">
-      <FaArrowRight />
-    </div>
-  </motion.div>
-);
+  const mainCertificates = [
+    {
+      title: "Full Stack Web Development",
+      issuer: "Udacity",
+      date: "2023",
+      image:
+        "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&q=80&w=800",
+      description:
+        "Advanced web development certification covering modern full-stack technologies",
+    },
+    {
+      title: "AWS Solutions Architect",
+      issuer: "Amazon Web Services",
+      date: "2023",
+      image:
+        "https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=800",
+      description: "Professional certification for AWS cloud architecture",
+    },
+    {
+      title: "Data Science Specialization",
+      issuer: "Coursera",
+      date: "2022",
+      image:
+        "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
+      description:
+        "Comprehensive data science and machine learning certification",
+    },
+  ];
 
-const FullCertificate = ({ certificate }) => (
-  <motion.div
-    className="bg-white p-8 rounded-lg shadow-lg"
-    initial={{ opacity: 0, y: 50 }}
-    animate={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.5 }}
-  >
-    <div className="flex items-center justify-between mb-6">
-      <h2 className="text-2xl font-bold text-blue-600">{certificate.title}</h2>
-      {certificate.icon}
-    </div>
-    <p className="mt-2 text-gray-600">Issuer: {certificate.issuer}</p>
-    <p className="text-gray-600">Date: {certificate.date}</p>
-    <p className="text-gray-600">Recipient: {certificate.recipient}</p>
-    <p className="text-gray-600">Instructor: {certificate.instructor}</p>
-    <p className="mt-4 text-gray-500">{certificate.description}</p>
-  </motion.div>
-);
-
-const CertificatePage = () => {
-  const [selectedCertificate, setSelectedCertificate] = useState(null);
+  const additionalCertificates = [
+    { title: "JavaScript Advanced", issuer: "Udemy", date: "2023" },
+    { title: "React Native", issuer: "Meta", date: "2023" },
+    { title: "Python Programming", issuer: "Codecademy", date: "2022" },
+    { title: "UI/UX Design", issuer: "Google", date: "2022" },
+    { title: "Cybersecurity Basics", issuer: "IBM", date: "2022" },
+    { title: "Agile Development", issuer: "Coursera", date: "2022" },
+    { title: "Docker Essentials", issuer: "Linux Foundation", date: "2021" },
+    { title: "GraphQL Master", issuer: "Apollo", date: "2021" },
+    { title: "TypeScript", issuer: "Microsoft", date: "2021" },
+    { title: "Node.js Advanced", issuer: "OpenJS Foundation", date: "2021" },
+  ];
 
   return (
-    <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-white-900 to-gray-800 text-Black py-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
-        <motion.h1
-          className="text-3xl font-bold text-center text-blue-600 mb-10"
-          initial={{ opacity: 0, y: -50 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          <span className="text-black inline-block mr-2 px-2 py-1">
-            My Most Valuable
-          </span>
-          Certificates
-        </motion.h1>
-        {selectedCertificate ? (
-          <div>
-            <motion.button
-              onClick={() => setSelectedCertificate(null)}
-              className="mb-4 px-4 py-2 bg-blue-500 text-white rounded hover:bg-blue-600 transition-colors"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+        {/* Header */}
+        <div className="text-center mb-16">
+          <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-blue-400 to-purple-500">
+            Professional Certifications
+          </h1>
+          <p className="text-gray-400 text-lg">
+            Continuous learning and professional development
+          </p>
+        </div>
+
+        {/* Main Certificates */}
+        <div className="grid md:grid-cols-3 gap-8 mb-16">
+          {mainCertificates.map((cert, index) => (
+            <div
+              key={index}
+              className="bg-white-800/50 rounded-xl p-6 transform hover:scale-105 transition-all duration-300 backdrop-blur-sm border border-gray-700/50"
             >
-              Back to Certificates
-            </motion.button>
-            <FullCertificate certificate={selectedCertificate} />
-          </div>
-        ) : (
-          <motion.div
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.5, staggerChildren: 0.1 }}
+              <div className="relative h-48 mb-4 rounded-lg overflow-hidden">
+                <img
+                  src={cert.image}
+                  alt={cert.title}
+                  className="w-full h-full object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-gray-900/90 to-transparent" />
+              </div>
+              <div className="flex items-start mb-4">
+                <Award className="w-6 h-6 text-blue-400 mr-2 flex-shrink-0" />
+                <h3 className="text-xl font-semibold">{cert.title}</h3>
+              </div>
+              <p className="text-gray-400 mb-2">{cert.description}</p>
+              <div className="flex justify-between items-center text-sm text-gray-500">
+                <span>{cert.issuer}</span>
+                <span>{cert.date}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Additional Certificates */}
+        <div className="bg-white-800/30 rounded-xl p-8 backdrop-blur-sm border border-gray-700/50">
+          <button
+            onClick={() => setShowMore(!showMore)}
+            className="w-full flex items-center justify-between text-xl font-semibold mb-6 hover:text-blue-400 transition-colors"
           >
-            {certificates.map((cert) => (
-              <CertificateCard
-                key={cert.id}
-                certificate={cert}
-                onClick={() => setSelectedCertificate(cert)}
-              />
-            ))}
-          </motion.div>
-        )}
+            <span>Additional Certifications</span>
+            {showMore ? (
+              <ChevronUp className="w-6 h-6" />
+            ) : (
+              <ChevronDown className="w-6 h-6" />
+            )}
+          </button>
+
+          {showMore && (
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {additionalCertificates.map((cert, index) => (
+                <div
+                  key={index}
+                  className="bg-gray-700/30 rounded-lg p-4 hover:bg-gray-700/50 transition-colors"
+                >
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h4 className="font-medium mb-1">{cert.title}</h4>
+                      <p className="text-sm text-gray-400">{cert.issuer}</p>
+                    </div>
+                    <ExternalLink className="w-5 h-5 text-gray-400 hover:text-blue-400 cursor-pointer" />
+                  </div>
+                  <div className="mt-2 text-xs text-gray-500">{cert.date}</div>
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
-};
+}
 
-export default CertificatePage;
+export default App;
